@@ -1,7 +1,12 @@
 package com.qa.challenges.garage;
 
-public class Vehicle {
+public abstract class Vehicle {
 
+	/***Vehicle attributes:
+	 - name
+	 - seats
+	 - 
+	***/
 	private String name;
 	private int maxSpeed;
 	private int seats;
@@ -11,17 +16,17 @@ public class Vehicle {
 		super();
 	}
 	
-	public Vehicle(String name, int id) {
+	public Vehicle(String name) {
 		this.name = name;
-		this.id = id;
 	}
 
-	public Vehicle(String name, int maxSpeed, int seats, int id) {
+	public Vehicle(String name, int maxSpeed, int seats) {
 		this.name = name;
 		this.maxSpeed = maxSpeed;
 		this.seats = seats;
-		this.id = id;
 	}
+	
+	public abstract double cost();
 
 	public String getName() {
 		return name;

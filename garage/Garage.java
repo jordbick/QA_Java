@@ -5,50 +5,47 @@ import java.util.List;
 
 public class Garage {
 
-	public List<Vehicle> vehiclesInGarage = new ArrayList<>();
+	private List<Vehicle> vehiclesInGarage = new ArrayList<>();
+
+	private int currentID;
 
 	public void addVehicle(Vehicle v) {
+		v.setId(++currentID);
 		this.vehiclesInGarage.add(v);
 	}
 
-	public double returnBill() {
-		double bill = 0;
-		double carBill = 0;
-		double motorbikeBill = 0;
-		double planeBill = 0;
-		for (Vehicle v : vehiclesInGarage) {
-			if (v instanceof Car) {
-				bill += 10.00d;
-				carBill += 10d;
-			} else if (v instanceof Motorbike) {
-				bill += 5.00d;
-				motorbikeBill += 5d;
-			} else if (v instanceof Plane) {
-				bill += 100.00d;
-				planeBill += 100.00d;
-			}
-		}
-		System.out.println(
-				"Car bill: £" + carBill + ". Motorbike bill: £" + motorbikeBill + ". Plane bill: £" + planeBill);
-		System.out.println("Total bill: £" + bill);
-		return bill;
-
-	}
-
 	public void displayGarge() {
-		System.out.println("Vehicles in garge:");
+		System.out.println("Vehicles in garge: \n");
 		for (Vehicle v : vehiclesInGarage) {
-			System.out.println(v);
+			System.out.println("Vehicle details:");
+			System.out.println(" " + v);
 		}
 	}
 
-	public void removeVehicleById(int i) {
-		for (int j = 0; j < vehiclesInGarage.size(); j++)
-			if (vehiclesInGarage.get(j).getId() == i) {
-				vehiclesInGarage.remove(j);
-				System.out.println("Vehicle: " + vehiclesInGarage.get(j).getName() + " removed from garage");
+	public void clearGarage() {
+		vehiclesInGarage.clear();
+		System.out.println("All vehicles cleared from garage");
+	}
+
+	public void removeVehicleById(int id) {
+		for (Vehicle v : vehiclesInGarage)
+			if (v.getId() == id) {
+				System.out.println("Vehicle: " + v.getName() + " removed from garage");
+				vehiclesInGarage.remove(v);
+				return;
+			}
+	}
+
+	public void removeVehicleByType(String type) {
+		List<Vehicle> toRemove = new ArrayList<>();
+		for (Vehicle v : this.vehiclesInGarage) {
+			if (v.getClass().getSimpleName().equalsIgnoreCase(type)) {
+				toRemove.add(v);
 			}
 		}
+		this.vehiclesInGarage.removeAll(toRemove);
+		System.out.println("All " + type + "s have been removed from the garage");
+	}
 
 	public double fixVehicle(String name) {
 		double bill = 0;
@@ -67,28 +64,32 @@ public class Garage {
 		return bill;
 	}
 
-	public void clearGarage() {
-		vehiclesInGarage.clear();
-		System.out.println("All vehicles cleared from garage");
-	}
-
-	public void removeVehicleByType(String type) {
-		for (int i = 0; i < vehiclesInGarage.size(); i ++) {
-			if (type.equalsIgnoreCase("car")) {
-				if (vehiclesInGarage.get(i) instanceof Car) {
-					vehiclesInGarage.remove(i);
-				}
-			}
-			if (type.equalsIgnoreCase("motorbike")) {
-				if (vehiclesInGarage.get(i) instanceof Motorbike) {
-					vehiclesInGarage.remove(i);
-				}
-			}
-			if (type.equalsIgnoreCase("plane")) {
-				if (vehiclesInGarage.get(i) instanceof Plane) {
-					vehiclesInGarage.remove(i);
-				}
-			}
+	public double returnBill() {
+		double bill = 0d;
+		for (Vehicle v : this.vehiclesInGarage) {
+			bill += v.cost();
 		}
+		if (vehiclesInGarage.size() > 0) {
+			System.out.println("Total bill: £" + bill);
+		} else {
+			System.out.println("No vehicles in garage");
+		}
+		return bill;
 	}
+	/*
+	 * public double returnBill() { double bill = 0; double carBill = 0; double
+	 * motorbikeBill = 0; double planeBill = 0; for (Vehicle v : vehiclesInGarage) {
+	 * if (v instanceof Car) { bill += v.cost(); carBill += v.cost();
+	 * System.out.println(v.getName() + " will cost " + v.cost() + " to fix"); }
+	 * else if (v instanceof Motorbike) { bill += v.cost(); motorbikeBill +=
+	 * v.cost(); System.out.println(v.getName() + " will cost " + v.cost() +
+	 * " to fix"); } else if (v instanceof Plane) { bill += v.cost(); planeBill +=
+	 * v.cost(); System.out.println(v.getName() + " will cost " + v.cost() +
+	 * " to fix"); } } if (vehiclesInGarage.size() > 0) { System.out.println(
+	 * "Car bill: £" + carBill + ". Motorbike bill: £" + motorbikeBill +
+	 * ". Plane bill: £" + planeBill); System.out.println("Total bill: £" + bill); }
+	 * else { System.out.println("No vehicles in garage"); } return bill;
+	 * 
+	 * }
+	 */
 }

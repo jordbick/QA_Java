@@ -9,12 +9,12 @@ public class Plane extends Vehicle{
 		super();
 	}
 	
-	public Plane(String name, int id) {
-		super(name, id);
+	public Plane(String name) {
+		super(name);
 	}
 	
-	public Plane(String name, int maxSpeed, int seats, int id, int maxPassengers, int engineNumber) {
-		super(name, maxSpeed, seats, 3);
+	public Plane(String name, int maxSpeed, int seats, int maxPassengers, int engineNumber) {
+		super(name, maxSpeed, seats);
 		this.maxPassengers = maxPassengers;
 		this.engineNumber = engineNumber;
 	}
@@ -37,6 +37,11 @@ public class Plane extends Vehicle{
 
 	public void setEngineNumber(int engineNumber) {
 		this.engineNumber = engineNumber;
+	}
+
+	@Override
+	public double cost() {
+		return 1000;
 	}
 	
 	

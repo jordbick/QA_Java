@@ -5,10 +5,10 @@ public class Runner {
 	public static void main(String[] args) {
 
 
-		Car cary = new Car("cary", 1);
-		Motorbike bikey = new Motorbike("bikey", 2);
-		Plane planey = new Plane("planey", 3);
-		Plane planey1 = new Plane("planey1", 4);
+		Car cary = new Car("Mini");
+		Motorbike bikey = new Motorbike("Suzuki");
+		Plane planey = new Plane("Boeing");
+		Plane planey1 = new Plane("RyanAir plane");
 		
 		Garage garage1 = new Garage();
 		
@@ -17,15 +17,16 @@ public class Runner {
 		garage1.addVehicle(cary);
 		garage1.addVehicle(planey1);
 		
+		
 		garage1.returnBill();
 		
 		garage1.displayGarge();
 		
-		garage1.removeVehicleById(1);
+		garage1.removeVehicleById(3);
 		
 		garage1.displayGarge();
 		
-		garage1.removeVehicleByType("plane");
+		garage1.removeVehicleByType("Plane");
 		
 		garage1.displayGarge();
 

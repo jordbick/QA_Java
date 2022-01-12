@@ -9,12 +9,12 @@ public class Car extends Vehicle{
 		super();
 	}
 	
-	public Car(String name, int id) {
-		super(name, id);
+	public Car(String name) {
+		super(name);
 	}
 	
-	public Car(String name, int maxSpeed, int seats, int id, int doors, boolean isManual) {
-		super(name, maxSpeed, seats, 1);
+	public Car(String name, int maxSpeed, int seats, int doors, boolean isManual) {
+		super(name, maxSpeed, seats);
 		this.doors = doors;
 		this.isManual = isManual;
 	}
@@ -33,6 +33,11 @@ public class Car extends Vehicle{
 
 	public void setManual(boolean isManual) {
 		this.isManual = isManual;
+	}
+
+	@Override
+	public double cost() {
+		return 100d;
 	}
 	
 	

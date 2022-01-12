@@ -9,12 +9,12 @@ public class Motorbike extends Vehicle{
 		super();
 	}
 	
-	public Motorbike(String name, int id) {
-		super(name, id);
+	public Motorbike(String name) {
+		super(name);
 	}
 	
-	public Motorbike(String name, int maxSpeed, int seats, int id, int wheels, String make) {
-		super(name, maxSpeed, seats, 2);
+	public Motorbike(String name, int maxSpeed, int seats, int wheels, String make) {
+		super(name, maxSpeed, seats);
 		this.wheels = wheels;
 		this.make = make;
 	}
@@ -33,6 +33,11 @@ public class Motorbike extends Vehicle{
 
 	public void setMake(String make) {
 		this.make = make;
+	}
+
+	@Override
+	public double cost() {
+		return 50;
 	}
 	
 	
